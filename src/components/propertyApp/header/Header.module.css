@@ -10,7 +10,30 @@
 .logo {
    width: 130px
 }
-.dropdowns {
+.headerElement {
    display: flex;
+}
 
+
+@media screen and (max-width: 1000px) {
+   .charts {
+      display: none;
+   }
+}
+
+@media screen and (max-width: 690px) {
+   .logo {
+      display: none;
+   }
+   .headerElement {
+      justify-content: space-between;
+      width: 100%
+   }
+}
+
+@media screen and (max-width: 600px) {
+   .header {
+      padding: 10px 0;
+      width: 100%;
+   }
 }

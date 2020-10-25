@@ -3,3 +3,19 @@
    height: 100%;
    width: 100%;
 }
+
+.container {
+   width: 100%
+}
+
+.streetView {
+   height: 250px;
+   width: 400px;
+}
+
+
+@media screen and (max-width: 600px) {
+   .streetView {
+      width: 100%;
+   }
+}

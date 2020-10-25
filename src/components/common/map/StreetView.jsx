@@ -1,5 +1,6 @@
 import React from "react";
 import ReactStreetview from 'react-streetview';
+import style from './GoogleMap.module.css'
 
 const apiKey = 'AIzaSyBfcoO_3wN0rGqLCxQkZ9V5XRMexVlwgZM'
 
@@ -17,10 +18,7 @@ const GoogleMap = (props) => {
    />
 
    return (
-      <div style={{
-         width: '400px',
-         height: '250px',
-      }}>
+      <div className={style.streetView}>
          <GenerateView />
       </div>
    );

@@ -24,7 +24,7 @@ const DoughnutChart = ({ title, labels, data }) => {
       <div className={style.body}>
          <h5 className={style.title}>{title}</h5>
          <Doughnut data={chartData}
-            height={80}
+            height={60}
             width={100}
             legend={{
                display: false

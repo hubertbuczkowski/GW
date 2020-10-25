@@ -6,12 +6,16 @@ import style from './Body.module.css';
 import Map from '../../common/map/GoogleMap'
 
 const Body = (props) => {
-   const { properties, onSelectProperty, selectedProperty } = props;
+   const { properties, onSelectProperty, selectedProperty, onClose } = props;
+
+   const isSelected = Object.keys(selectedProperty).length > 0;
 
    return (
       <div className={style.body}>
-         {Object.keys(selectedProperty).length > 0 ? <PropertyView selectedValue={selectedProperty} /> : null}
-         <Map properties={properties} onSelectMarker={onSelectProperty} />
+         {isSelected ? <PropertyView selectedValue={selectedProperty} onClose={onClose} /> : null}
+         <div className={`${isSelected ? style.selected : null} ${style.mapContainer}`}>
+            <Map properties={properties} onSelectMarker={onSelectProperty} />
+         </div>
       </div>
    );
 }
@@ -33,17 +37,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchProps = (dispatch) => ({
-   onChangeProperty: (value) => {
-      dispatch(selectFilterProperty(value));
-   },
-   onChangeBathrooms: (value) => {
-      dispatch(selectFilterBathrooms(value));
-   },
-   onChangeBedrooms: (value) => {
-      dispatch(selectFilterBedrooms(value));
-   },
    onSelectProperty: (property) => {
       dispatch(selectProperty(property));
+   },
+   onClose: () => {
+      dispatch(selectProperty({}));
    }
 })
 

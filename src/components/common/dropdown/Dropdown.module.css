@@ -17,6 +17,7 @@
    align-items: center;
    justify-content: space-between;
    border-radius: 25px;
+   cursor: pointer;
 }
 
 .header:hover {
@@ -51,6 +52,7 @@
    padding-top: 0.5em;
    padding-left: 1em;
    transition: 0.3s;
+   cursor: pointer;
 }
 
 .listItem:nth-child(odd) {
@@ -60,4 +62,10 @@
 .listItem:hover {
    color: #ffffff;
    background: #60B5F3;
+}
+
+@media screen and (max-width: 600px) {
+   .container {
+      margin: 0 5px;
+   }
 }

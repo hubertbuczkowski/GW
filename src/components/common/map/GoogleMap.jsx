@@ -1,6 +1,6 @@
 import React from "react";
 import style from './GoogleMap.module.css';
-import { Map, Marker, GoogleApiWrapper, GoogleAPI } from 'google-maps-react'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import logo from '../../../assets/logo2.png'
 
 const apiKey = 'AIzaSyBfcoO_3wN0rGqLCxQkZ9V5XRMexVlwgZM'

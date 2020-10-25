@@ -4,7 +4,7 @@ import StreetView from '../map/StreetView'
 import ListItem from './PropertyViewItem';
 
 
-const PropertyView = ({ selectedValue }) => {
+const PropertyView = ({ selectedValue, onClose }) => {
 
    const { address, sqm, price, propertyType, baths, beds, lat, lon } = selectedValue;
 
@@ -24,6 +24,9 @@ const PropertyView = ({ selectedValue }) => {
             <ListItem title="Bedrooms" value={beds} />
             <ListItem title="Bathrooms" value={baths} />
          </ul>
+         <div className={style.closeButton} onClick={onClose}>
+            Close
+            </div>
       </div >
    );
 }

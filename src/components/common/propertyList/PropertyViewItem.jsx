@@ -2,7 +2,7 @@ import React from "react";
 import style from './PropertyView.module.css';
 
 
-const PropertyView = ({ title, value, image }) => {
+const PropertyView = ({ title, value }) => {
 
    return (
       <li className={style.propertyDetail}>
