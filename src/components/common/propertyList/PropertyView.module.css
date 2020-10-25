@@ -1,0 +1,32 @@
+.container {
+   background: -webkit-gradient(linear, left top, right top, from(#5e74db), to(#00b8d9));
+   background: linear-gradient(to right, #5e74db, #00b8d9);
+   width: 400px;
+
+}
+
+.propertyDetail {
+   color: white !important;
+
+}
+
+.list {
+   list-style-type: none;
+   padding-left: 16px;
+   padding-right: 16px;
+}
+
+.propertyDetail {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 16px ;
+}
+
+.label {
+   font-size: 11px;
+   margin-bottom: 6px;
+}
+
+.value {
+   font-weight: bold;
+}
