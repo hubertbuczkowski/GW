@@ -18,9 +18,9 @@ const PropertyView = ({ selectedValue, onClose }) => {
             <ListItem title="Property type" value={propertyType.toLowerCase().replace(/((?<=-)([a-z]))|^[a-z]/g, (letter) => letter.toUpperCase())} />
             <ListItem title="Latitude" value={lat} />
             <ListItem title="Longtitude" value={lon} />
-            <ListItem title="Area" value={sqm} />
-            <ListItem title="Price" value={price} />
-            <ListItem title="Euro/m2" value={sqmPrice} />
+            <ListItem title="Area" value={sqm} sign="m²" />
+            <ListItem title="Price" value={price} sign="€" />
+            <ListItem title="Euro/m2" value={sqmPrice} sign="€/m²" />
             <ListItem title="Bedrooms" value={beds} />
             <ListItem title="Bathrooms" value={baths} />
          </ul>
