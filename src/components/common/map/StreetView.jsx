@@ -1,21 +1,19 @@
 import React from "react";
 import ReactStreetview from 'react-streetview';
-import style from './GoogleMap.module.css'
+import style from './GoogleMap.module.css';
+import { API_KEY } from '../../../assets/private';
 
-const apiKey = 'AIzaSyBfcoO_3wN0rGqLCxQkZ9V5XRMexVlwgZM'
 
-const GoogleMap = (props) => {
-   const googleMapsApiKey = 'AIzaSyBfcoO_3wN0rGqLCxQkZ9V5XRMexVlwgZM';
-
+const StreetView = (props) => {
    const streetViewPanoramaOptions = {
       position: { lat: parseFloat(props.lat), lng: parseFloat(props.lon) },
-      zoom: 1
+      zoom: 1,
    };
 
    const GenerateView = () => <ReactStreetview
-      apiKey={googleMapsApiKey}
+      apiKey={API_KEY}
       streetViewPanoramaOptions={streetViewPanoramaOptions}
-   />
+   />;
 
    return (
       <div className={style.streetView}>
@@ -24,4 +22,4 @@ const GoogleMap = (props) => {
    );
 }
 
-export default GoogleMap;
+export default StreetView;

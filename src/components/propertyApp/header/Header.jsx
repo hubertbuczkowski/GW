@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectFilterProperty, selectFilterBathrooms, selectFilterBedrooms } from '../../../redux/actions'
+import { selectFilterProperty, selectFilterBathrooms, selectFilterBedrooms } from '../../../redux/actions';
 import style from './Header.module.css';
-import Dropdown from '../../common/dropdown/Dropdown'
-import logo from '../../../assets/logoFull.svg'
+import Dropdown from '../../common/dropdown/Dropdown';
+import logo from '../../../assets/logoFull.svg';
 import DonutChart from '../../common/charts/DoughnutChart';
+import { isPropertySelected } from '../helpers/Helper';
 
 const Header = (props) => {
    const {
@@ -19,7 +20,7 @@ const Header = (props) => {
       bathrooms,
       filteredTypes,
       filteredBaths,
-      filteredBeds
+      filteredBeds,
    } = props;
 
    const displayProperties = !selectedPropertyType || selectedPropertyType.key === "ANY";
@@ -46,7 +47,7 @@ const Header = (props) => {
 
 const updateFilters = (object, key, value) => {
    if (!object[key]) {
-      object[key] = { key, value }
+      object[key] = { key, value };
    }
 }
 
@@ -60,14 +61,12 @@ const updateAmount = (object, key) => {
 
 
 const mapStateToProps = (state) => {
-   const { filters, isLoading, properties } = state.mainReducer;
+   const { filters, isLoading, properties } = state.main;
    const { propertyType, bedrooms, bathrooms } = filters;
 
    let propertyTypes = {};
    let bathroomList = {};
    let bedroomsList = {};
-
-
    let filteredTypes = {};
    let filteredBaths = {};
    let filteredBeds = {};
@@ -79,25 +78,19 @@ const mapStateToProps = (state) => {
       const bedsNumber = isNaN(beds) || beds === "" ? "0" : beds;
       const bathsNumber = isNaN(baths) || baths === "" ? "0" : baths;
 
-      const isSamePropertyType = filters.propertyType === null || filters.propertyType.key === "ANY" ? true : propertyType === filters.propertyType.key
-      const isSameBathsNumber = filters.bathrooms === null || filters.bathrooms.key === "ANY" ? true : (baths || "0") === filters.bathrooms.key
-      const isSameBedsNumber = filters.bedrooms === null || filters.bedrooms.key === "ANY" ? true : (beds || "0") === filters.bedrooms.key
+      updateFilters(propertyTypes, property.propertyType, propertyValue);
+      updateFilters(bathroomList, bathsNumber, bathsNumber);
+      updateFilters(bedroomsList, bedsNumber, bedsNumber);
 
-      const isFiltered = isSameBathsNumber && isSamePropertyType && isSameBedsNumber
-
-      updateFilters(propertyTypes, property.propertyType, propertyValue)
-      updateFilters(bathroomList, bathsNumber, bathsNumber)
-      updateFilters(bedroomsList, bedsNumber, bedsNumber)
-
-      if (isFiltered) {
-         updateAmount(filteredTypes, propertyValue)
-         updateAmount(filteredBaths, bathsNumber)
-         updateAmount(filteredBeds, bedsNumber)
+      if (isPropertySelected(property, filters.propertyType, filters.bathrooms, filters.bedrooms)) {
+         updateAmount(filteredTypes, propertyValue);
+         updateAmount(filteredBaths, bathsNumber);
+         updateAmount(filteredBeds, bedsNumber);
       }
    })
 
    const sortNumbers = (a, b) => parseInt(a.value) - parseInt(b.value);
-   const sortStrings = (a, b) => a.value.localeCompare(b.value)
+   const sortStrings = (a, b) => a.value.localeCompare(b.value);
 
    propertyTypes = Object.values(propertyTypes).sort(sortStrings);
    bedroomsList = Object.values(bedroomsList).sort(sortNumbers);
@@ -114,7 +107,7 @@ const mapStateToProps = (state) => {
       bathrooms: bathroomList,
       filteredTypes,
       filteredBaths,
-      filteredBeds
+      filteredBeds,
    };
 }
 

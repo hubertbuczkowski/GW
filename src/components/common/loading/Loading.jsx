@@ -1,21 +1,14 @@
 import React from "react";
 import style from './Loading.module.css';
 
+const LoadingText = ({ text }) => <div className={style.label}>
+   {text.split("").map((letter, index) => <span key={index}>{letter}</span>)}
+</div>;
+
 const Loading = () => {
    return (
       <div className={style.body}>
-         <div className={style.label}>
-            <span>L</span>
-            <span>O</span>
-            <span>A</span>
-            <span>D</span>
-            <span>I</span>
-            <span>N</span>
-            <span>G</span>
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-         </div>
+         <LoadingText text="Loading..." />
          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div className={`${style.ball}`}></div>
             <div className={`${style.ball} ${style.slow}`}></div>

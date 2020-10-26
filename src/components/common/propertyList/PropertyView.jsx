@@ -1,6 +1,6 @@
 import React from "react";
 import style from './PropertyView.module.css';
-import StreetView from '../map/StreetView'
+import StreetView from '../map/StreetView';
 import ListItem from './PropertyViewItem';
 
 

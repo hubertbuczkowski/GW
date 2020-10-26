@@ -5,7 +5,7 @@ import Loading from '../../components/common/loading/Loading'
 import Header from '../../components/propertyApp/header/Header'
 import Body from '../../components/propertyApp/body/Body'
 
-const App = (props) => {
+const MainPage = (props) => {
   const { isLoading } = props;
 
   const Content = () => (<div style={{ display: "flex", flexDirection: "row", height: '100%' }}>
@@ -23,11 +23,8 @@ const App = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoading } = state.mainReducer;
+  const { isLoading } = state.main;
   return { isLoading };
 }
 
-const mapDispatchProps = (dispatch) => ({
-})
-
-export default connect(mapStateToProps, mapDispatchProps)(App);
+export default connect(mapStateToProps, null)(MainPage);

@@ -1,14 +1,14 @@
 import React from "react";
 import style from './GoogleMap.module.css';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-import logo from '../../../assets/logo2.png'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import logo from '../../../assets/logo2.png';
+import { API_KEY } from '../../../assets/private';
 
-const apiKey = 'AIzaSyBfcoO_3wN0rGqLCxQkZ9V5XRMexVlwgZM'
 
 const GoogleMap = (props) => {
    const { properties, google, onSelectMarker } = props;
    let latsum = 0;
-   let lngsum = 0
+   let lngsum = 0;
    properties.forEach(property => {
       latsum += parseFloat(property.lat);
       lngsum += parseFloat(property.lon);
@@ -18,7 +18,8 @@ const GoogleMap = (props) => {
          <Map google={google}
             initialCenter={{ lat: latsum / properties.length, lng: lngsum / properties.length }}
          >
-            {properties.map((property) => <Marker
+            {properties.map((property, index) => <Marker
+               key={index}
                onClick={() => onSelectMarker(property)}
                title={property.address}
                name={property.address}
@@ -35,5 +36,5 @@ const GoogleMap = (props) => {
 }
 
 export default GoogleApiWrapper({
-   apiKey
+   API_KEY,
 })(GoogleMap);

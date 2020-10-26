@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2';
 import style from './DoughnutChart.module.css'
 
 const DoughnutChart = ({ title, labels, data }) => {
-   console.log({ title, labels, data });
    const chartData = {
       labels,
       datasets: [{
@@ -21,7 +20,8 @@ const DoughnutChart = ({ title, labels, data }) => {
       }]
    };
    return (
-      <div className={style.body}>
+      <div className={(!data || data.length <= 0) ? style.emptyChart : null
+      }>
          <h5 className={style.title}>{title}</h5>
          <Doughnut data={chartData}
             height={60}
@@ -30,7 +30,7 @@ const DoughnutChart = ({ title, labels, data }) => {
                display: false
             }}
          />
-      </div>
+      </div >
    );
 }
 

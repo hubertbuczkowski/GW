@@ -5,6 +5,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons'
 
 const Dropdown = ({ elements, selectedValue, onChange, title }) => {
    const [isOpen, setIsOpen] = useState(false);
+   const wrapperRef = useRef(null);
    const dropdownElements = [{ key: 'ANY', value: `Any ${title.toLowerCase()}` }, ...elements]
 
    const toggling = () => setIsOpen(!isOpen);
@@ -22,20 +23,19 @@ const Dropdown = ({ elements, selectedValue, onChange, title }) => {
 
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
-         function handleClickOutside(event) {
+         function outsideClick(event) {
             if (ref.current && !ref.current.contains(event.target) && isOpen) {
                setIsOpen(false);
             }
          }
 
-         document.addEventListener("mousedown", handleClickOutside);
+         document.addEventListener("mousedown", outsideClick);
          return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", outsideClick);
          };
       }, [ref, isOpen]);
    }
 
-   const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
 
    return (
@@ -53,8 +53,7 @@ const Dropdown = ({ elements, selectedValue, onChange, title }) => {
                   })}
                </div>
             </div>
-         )
-         }
+         )}
       </div >
    );
 }
